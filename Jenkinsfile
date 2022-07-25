@@ -1,21 +1,20 @@
 pipeline {
-    agent any
-
-    stages {
-        stage('Build') {
-            steps {
-                echo 'Building..'
-            }
+  agent any
+  stages {
+    stage('Checkout') {
+      steps {
+        echo 'Checkout master branch'
+        checkout scm
+        dir('webapp') {
+          bat 'npm install'
         }
-        stage('Test') {
-            steps {
-                echo 'Testing..'
-            }
-        }
-        stage('Deploy') {
-            steps {
-                echo 'Deploying....'
-            }
-        }
+      }
     }
-}
+    stage('Build') {
+      steps {
+        echo 'Building..'
+        dir('webapp') {
+          bat 'npm run ng -- build --prod --baseHref=/webapp/ -optimization=true'
+        }
+      }
+    }
