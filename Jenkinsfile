@@ -1,20 +1,28 @@
+
 pipeline {
-  agent any
-  stages {
-    stage('Checkout') {
-      steps {
-        echo 'Checkout master branch'
-        checkout scm
-        dir('webapp') {
-          bat 'npm install'
-        }
-      }
+    agent any
+
+    tools {
+        // Install the Maven version configured as "M3" and add it to the path.
+        maven "M3"
     }
-    stage('Build') {
-      steps {
-        echo 'Building..'
-        dir('webapp') {
-          bat 'npm run ng -- build --prod --baseHref=/webapp/ -optimization=true'
+
+    stages {
+        stage('Build') {
+            steps {
+                // Get some code from a GitHub repository
+                //git 'https://github.com/jglick/simple-maven-project-with-tests.git'
+                git 'http://10.3.138.14/paras/humanoid_admin_test.git'
+
+                // Run Maven on a Unix agent.
+                bat "mvn -Dmaven.test.failure.ignore=true clean package"
+
+                // To run Maven on a Windows agent, use
+                // bat "mvn -Dmaven.test.failure.ignore=true clean package"
+            
+            }
+
+  
         }
-      }
     }
+}
