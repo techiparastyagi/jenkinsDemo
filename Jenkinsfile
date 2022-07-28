@@ -18,8 +18,7 @@ pipeline {
                 // Run Maven on a Unix agent.
                 //bat "npm run build"
                   //stage('Build') {
-       
-        bat 'ng build --prod --aot --sm --progress=false'
+      
     //}
 
 
