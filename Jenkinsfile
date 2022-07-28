@@ -16,7 +16,12 @@ pipeline {
                 git  'https://github.com/techiparastyagi/jenkinsDemo.git'
 
                 // Run Maven on a Unix agent.
-                bat "npm run build"
+                //bat "npm run build"
+                  //stage('Build') {
+       
+        bat 'ng build --prod --aot --sm --progress=false'
+    //}
+
 
                 // To run Maven on a Windows agent, use
                 // bat "mvn -Dmaven.test.failure.ignore=true clean package"
