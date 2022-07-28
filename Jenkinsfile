@@ -13,7 +13,7 @@ pipeline {
                 // Get some code from a GitHub repository
                 //git 'https://github.com/jglick/simple-maven-project-with-tests.git'
                 //git 'http://10.3.138.14/paras/humanoid_admin_test.git'
-                git  'https://github.com/techiparastyagi/jenkinsDemo.git'
+                //git  'https://github.com/techiparastyagi/jenkinsDemo.git'
 
                 // Run Maven on a Unix agent.
                 //bat "npm run build"
